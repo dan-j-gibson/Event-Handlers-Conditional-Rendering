@@ -13,7 +13,7 @@ export default class Accordion extends Component {
     handleSetActiveSecion = (sectionIndex) => {
     this.setState({ activeSectionIndex: sectionIndex })
     }
-    
+
     renderItem(section, idx, activeSectionIndex) {
         return (
           <li className='Accordion__item' key={idx}>
@@ -27,3 +27,17 @@ export default class Accordion extends Component {
           </li>
         )
       }
+
+      render() {
+        const { activeSectionIndex } = this.state
+        const { sections } = this.props
+        return (
+          <ul className='Accordion'>
+            {sections.map((section, idx) =>
+              this.renderItem(section, idx, activeSectionIndex)
+            )}
+          </ul>
+        )
+      }
+    }
+    
