@@ -14,12 +14,21 @@ const newRandomCard = () => {
 }
 
 function omit(obj, keyToOmit) {
-  return Object.entries(obj).reduce(
-    (newObj, [key, value]) =>
-        key === keyToOmit ? newObj : {...newObj, [key]: value},
-    {}
-  );
+  let {[keyToOmit]: _, ...rest} = obj;
+  return rest;
 }
+
+// Example
+const objectWithKVPs = {
+  key: 'value',
+  foo: 'foo value',
+  bar: 'bar value',
+  abc: { nested: 'object' }
+}
+
+// To remove the foo key value pair
+const newObjectWithKVPs = omit(objectWithKVPs, 'foo');
+
 class App extends Component {
 
   state = {
